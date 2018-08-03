@@ -4,7 +4,7 @@ import collections
 import itertools
 import operator
 
-from cStringIO import StringIO
+from io import BytesIO
 from lxml import etree
 
 import numpy as np
@@ -73,11 +73,11 @@ class MDR(object):
         -------
         A sorted list of elements with descreasing order of odds of being an candidate.
         """
-        if isinstance(html, unicode):
+        if isinstance(html, str):
             html = html.encode(encoding)
 
         parser = etree.HTMLParser(encoding=encoding)
-        doc = etree.parse(StringIO(html), parser)
+        doc = etree.parse(BytesIO(html), parser)
 
         d = {}
         # find all the non-empty text nodes
@@ -87,7 +87,7 @@ class MDR(object):
             d.setdefault(simplify_xpath(xpath), []).append(xpath)
 
         counter = collections.Counter()
-        for key, elements in d.iteritems():
+        for key, elements in d.items():
             deepest_common_ancestor = "/".join(common_prefix(*[xpath.split('/') for xpath in elements]))
             counter[deepest_common_ancestor] += 1
 
@@ -252,8 +252,8 @@ class RecordFinder(object):
 
         m = np.zeros((len(r1)+1, len(r2)+1), np.float)
 
-        for i in xrange(1, len(m)):
-            for j in xrange(1, len(m[0])):
+        for i in range(1, len(m)):
+            for j in range(1, len(m[0])):
                 sim = self.tree_similarity_cache.get((r1[i - 1], r2[j - 1]))
                 assert sim != None, 'tree %s %s not in cache' % (r1[i-1], r2[j-1])
                 m[i, j] = max(m[i, j - 1], m[i - 1, j], m[i - 1][j - 1] + sim)
