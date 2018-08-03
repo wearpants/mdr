@@ -11,6 +11,7 @@ Install with `pipenv`::
 
     pipenv install mdr3
 
+You must have `Cython` installed to build from source.
 
 Usage
 =====
