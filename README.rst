@@ -2,44 +2,14 @@
 MDR
 ===
 
-.. image:: https://travis-ci.org/scrapinghub/mdr.svg?branch=master
-    :target: https://travis-ci.org/scrapinghub/mdr
-
 MDR is a library detect and extract listing data from HTML page. It implemented base on the `Finding and Extracting Data Records from Web Pages <http://dl.acm.org/citation.cfm?id=1743635>`_ but
 change the similarity to tree alignment proposed by `Web Data Extraction Based on Partial Tree Alignment <http://doi.acm.org/10.1145/1060745.1060761>`_ and `Automatic Wrapper Adaptation by Tree Edit Distance Matching <http://arxiv.org/pdf/1103.1252.pdf>`_.
 
+Installation
+============
+Install with `pipenv`::
 
-Requires
-========
-
-- Requires python 2.
-- ``numpy`` and ``scipy`` must be installed to build this package.
-
-
-Compile and test
-================
-    # optionally use docker
-    $ docker run -ti python:2.7.13 bash
-
-    $ apt-get update && apt-get install -y python-numpy cython python-scipy
-    $ cd
-    $ git clone https://github.com/scrapinghub/mdr.git
-    $ cd mdr
-    $ pip install -r requirements.txt
-    $ python setup.py build
-    $ python setup.py install
-
-    # let's move away from this dir, otherwise it would fail with ImportError: No module named _tree
-    $ cd
-    $ cp -r mdr/tests .
-    # -m: use it as a library, so that it reads the get_page def from tests/__init__.py
-    $ python -m tests.test_mdr
-
-    .....
-    ----------------------------------------------------------------------
-    Ran 5 tests in 2.689s
-
-    OK
+    pipenv install mdr3
 
 
 Usage
