@@ -11,6 +11,7 @@ lxml = "*"
 [dev-packages]
 pytest = "*"
 tox = "*"
+Cython = "*"
 
 [requires]
 python_version = "3.6"
